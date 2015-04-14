@@ -1,10 +1,10 @@
 import time
 import RPi.GPIO as GPIO
 
-def my_callback(channel):
-    print('This is a edge event callback function!')
-    print('Edge detected on channel %s'%channel)
-    print('This is run in a different thread to your main program')
+#def my_callback(channel):
+#    print('This is a edge event callback function!')
+#    print('Edge detected on channel %s'%channel)
+#    print('This is run in a different thread to your main program')
 
 print "Hello from Resin"
 
