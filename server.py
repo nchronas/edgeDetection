@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(40, GPIO.IN)
 
-GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge detection on a channel
+#GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge detection on a channel
 
 while True:
 	time.sleep(1)
