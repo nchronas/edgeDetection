@@ -19,7 +19,7 @@ def my_callback(channel):
     global logList, log, sampleSize
     if log == True :
         timelog = time.time() - logStart
-        logList.append( [ (channel, GPIO.input(channel), timelog)] 
+        logList.append( [ (channel, GPIO.input(channel), timelog)])
         if len(logList) > sampleSize:
             log = False
     #print "event", channel, GPIO.input(channel), timelog 
