@@ -76,7 +76,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.send_header('Content-type','text/html')
             self.end_headers()
             for row in logList:
-                self.wfile.write(row)
+                self.wfile.write(row + "\n")
             return 
 
         elif self.path[0:7]=='/sample':
