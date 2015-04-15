@@ -37,7 +37,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print 'server request'
 
         if self.path[0:5]=='/start':
-			global log, logStart
+            global log, logStart
             print "started logging"
             logStart = time.time() 
             self.send_response(200)
@@ -69,7 +69,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(''' ''')
             return 
-               
+
         else if self.path[0:7]=='/sample':
             global sampleSize
             test=parse_qs(urlparse(self.path).query)
@@ -81,7 +81,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(''' ''')
             return 
-            
+
         else:
         #serve files, and directory listings by following self.path from
         #current working directory
