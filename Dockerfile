@@ -1,6 +1,5 @@
 FROM resin/rpi-raspbian:latest
-RUN apt-get update -y
-RUN apt-get update && apt-get install -y \
+RUN apt-get update -y && apt-get install -y \
 python python-pip python-dev python-dbus python-flask \
 dropbear \
 nano \
