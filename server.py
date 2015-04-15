@@ -36,7 +36,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print self.path  
         print 'server request'
 
-        if self.path[0:5]=='/start':
+        if self.path[0:6]=='/start':
             global log, logStart
             print "started logging"
             logStart = time.time() 
