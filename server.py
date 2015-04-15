@@ -46,7 +46,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             log = True
             return
 
-        else if self.path[0:5]=='/stop':
+        elif self.path[0:5]=='/stop':
             global log
             print "stoppedlogging"
             self.send_response(200)
@@ -55,7 +55,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             log = False
             return 
 
-        else if self.path[0:7]=='/status':
+        elif self.path[0:7]=='/status':
             print "logging status"
             self.send_response(200)
             self.send_header('Content-type','text/html')
@@ -63,14 +63,14 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.wfile.write(log)
             return 
 
-        else if self.path[0:4]=='/log':
+        elif self.path[0:4]=='/log':
             self.send_response(200)
             self.send_header('Content-type','text/html')
             self.end_headers()
             self.wfile.write(''' ''')
             return 
 
-        else if self.path[0:7]=='/sample':
+        elif self.path[0:7]=='/sample':
             global sampleSize
             test=parse_qs(urlparse(self.path).query)
             print test, "get values"
