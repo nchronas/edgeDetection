@@ -10,7 +10,7 @@ from urlparse import urlparse, parse_qs
 
 
 def my_callback(channel):
-    global logList, log
+    global logList, log, sampleSize
     if log == True :
         timelog = time.time() - logStart
         logList.append( [ (channel, GPIO.input(channel), timelog)] 
