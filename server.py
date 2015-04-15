@@ -17,7 +17,7 @@ print "Hello from Resin"
 
 GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge detection on a channel
