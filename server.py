@@ -10,12 +10,11 @@ from urlparse import urlparse, parse_qs
 
 
 def my_callback(channel):
-    global logList, logListCnt, log
+    global logList, log
     if log == True :
         timelog = time.time() - logStart
         logList.append( [ (channel, GPIO.input(channel), timelog)] 
-        logListCnt += 1
-        if logListCnt > sampleSize:
+        if len(logList) > sampleSize:
             log = False
     #print "event", channel, GPIO.input(channel), timelog 
 
@@ -31,7 +30,6 @@ GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge 
 
 PORT = 80
 logList = []
-logListCnt = 0
 sampleSize = 1024
 log = False
     
@@ -44,7 +42,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print 'server request'
 
         if self.path[0:6]=='/start':
-            global log, logStart, logList, logListCnt
+            global log, logStart, logList
             print "started logging"
             logStart = time.time() 
             self.send_response(200)
@@ -52,7 +50,6 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.end_headers()
             logList = []
             log = True
-            logListCnt = 0
             return
 
         elif self.path[0:5]=='/stop':
