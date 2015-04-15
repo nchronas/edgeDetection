@@ -9,6 +9,12 @@ from time import sleep
 from urlparse import urlparse, parse_qs
 
 
+PORT = 80
+logList = []
+sampleSize = 1024
+log = False
+
+
 def my_callback(channel):
     global logList, log, sampleSize
     if log == True :
@@ -27,11 +33,6 @@ GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge detection on a channel
 
-
-PORT = 80
-logList = []
-sampleSize = 1024
-log = False
     
 class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
