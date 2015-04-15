@@ -71,7 +71,7 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             return 
 
         elif self.path[0:4]=='/log':
-			global logList
+            global logList
             self.send_response(200)
             self.send_header('Content-type','text/html')
             self.end_headers()
