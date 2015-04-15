@@ -10,8 +10,14 @@ from urlparse import urlparse, parse_qs
 
 
 def my_callback(channel):
-    timelog = time.time() - logStart
-    print "event", channel, GPIO.input(channel), timelog 
+    global logList, logListCnt, log
+    if log == True :
+        timelog = time.time() - logStart
+        logList.append( [ (channel, GPIO.input(channel), timelog)] 
+        logListCnt += 1
+        if logListCnt > sampleSize:
+            log = False
+    #print "event", channel, GPIO.input(channel), timelog 
 
 print "Hello from Resin"
 
@@ -24,7 +30,8 @@ GPIO.add_event_detect(40, GPIO.RISING, callback=my_callback)  # add rising edge 
 
 
 PORT = 80
-
+logList = []
+logListCnt = 0
 sampleSize = 1024
 log = False
     
@@ -37,13 +44,15 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print 'server request'
 
         if self.path[0:6]=='/start':
-            global log, logStart
+            global log, logStart, logList, logListCnt
             print "started logging"
             logStart = time.time() 
             self.send_response(200)
             self.send_header('Content-type','text/html')
             self.end_headers()
+            logList = []
             log = True
+            logListCnt = 0
             return
 
         elif self.path[0:5]=='/stop':
@@ -64,10 +73,12 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             return 
 
         elif self.path[0:4]=='/log':
+			global logList
             self.send_response(200)
             self.send_header('Content-type','text/html')
             self.end_headers()
-            self.wfile.write(''' ''')
+            for row in logList:
+                self.wfile.write(row)
             return 
 
         elif self.path[0:7]=='/sample':
