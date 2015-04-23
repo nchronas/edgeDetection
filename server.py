@@ -26,7 +26,7 @@ def my_callback(channel):
 #            log = False
     print "event", channel, GPIO.input(channel), timelog 
     socketio.emit('my response',
-                     {'data': 'Server generated event', 'count': count},
+                     {'data': 'Server generated from io', 'count': count},
                      namespace='/test')
 
 app = Flask(__name__)
