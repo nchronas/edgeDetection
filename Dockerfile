@@ -5,5 +5,6 @@ dropbear \
 nano \
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip install RPi.GPIO
+RUN pip install flask-socketio
 COPY . /app
 CMD ["bash", "/app/start.sh"]
